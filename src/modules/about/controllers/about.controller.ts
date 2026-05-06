@@ -41,8 +41,8 @@ export class AboutController {
   }
 
   @Get('members')
-  getBandMembersInfo(): string {
-    return this.aboutService.getBandMembersInfo();
+  async getBandMembersInfo(): Promise<MemberDto[]> {
+    return await this.aboutService.getBandMembersInfoAsync();
   }
 
   @Get('members/:id')

@@ -4,9 +4,8 @@ import { DataSource } from 'typeorm';
 
 export const AppDataSource = new DataSource({
   type: 'mongodb',
-  host: 'mongodb+srv://llipinski1993_db_user:njyu5Kw9aAS2F2V3@ffg-db.ffno4j3.mongodb.net/',
-  port: 27017,
+  url: `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@ffg-db.ffno4j3.mongodb.net/ffg-db?retryWrites=true&w=majority`,
   database: 'ffg-db',
-  password: 'Pusia12345',
-  username: 'llipinski1993_db_user',
+  entities: [AboutEntity, MusicianEntity],
+  synchronize: false,
 });
