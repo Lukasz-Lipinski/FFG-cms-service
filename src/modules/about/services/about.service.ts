@@ -11,6 +11,7 @@ import { MemberDto } from '../dto/members/MemberDto';
 import { ObjectId } from 'mongodb';
 import { AboutEntity } from '../entity/AboutEntity';
 import { UpdateBioDto } from '../dto/bio/UpdateBioDto';
+import { MapToMemberDto } from '../shared/mappers';
 
 @Injectable()
 export class AboutService {
@@ -65,8 +66,12 @@ export class AboutService {
     return foundBio;
   }
 
-  getBandMembersInfo(): string {
-    return 'Band members information';
+  async getBandMembersInfoAsync(): Promise<MemberDto[]> {
+    const members = await this.musicianRepository.find();
+
+    const memberDtos: MemberDto[] = members.map((m) => MapToMemberDto(m));
+
+    return memberDtos;
   }
 
   async getMemberInfo(id: string): Promise<MemberDto> {
@@ -78,12 +83,7 @@ export class AboutService {
       throw new NotFoundException(`Member with id ${id} not found`);
     }
 
-    const member: MemberDto = {
-      ...foundMember,
-      id: foundMember._id?.toString() ?? '',
-    };
-
-    return member;
+    return MapToMemberDto(foundMember);
   }
 
   async addMemberInfoAsync(member: AddMemberDto): Promise<MusicianEntity> {
