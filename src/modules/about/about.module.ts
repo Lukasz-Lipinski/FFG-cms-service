@@ -9,6 +9,5 @@ import { AboutEntity } from './entity/AboutEntity';
   imports: [TypeOrmModule.forFeature([MusicianEntity, AboutEntity])],
   controllers: [AboutController],
   providers: [AboutService],
-  exports: [AboutService],
 })
 export class AboutModule {}
