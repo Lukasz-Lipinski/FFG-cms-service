@@ -10,8 +10,8 @@ async function bootstrap() {
 }
 try {
   AppDataSource.initialize();
-  bootstrap();
   console.log('Data Source has been initialized!');
+  bootstrap();
 } catch (error) {
   console.error('Error during Data Source initialization', error);
 }
