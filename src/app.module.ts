@@ -18,6 +18,7 @@ import { ConfigModule } from '@nestjs/config';
       url: `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@ffg-db.ffno4j3.mongodb.net/ffg-db`,
       entities: [MusicianEntity, AboutEntity],
     }),
+    ConfigModule.forRoot(),
   ],
   controllers: [AppController],
   providers: [AppService],
