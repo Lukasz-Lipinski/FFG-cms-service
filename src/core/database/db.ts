@@ -1,6 +1,7 @@
-import { AboutEntity } from 'src/modules/about/entity/AboutEntity';
-import { MusicianEntity } from 'src/modules/about/entity/MusicianEntity';
+import 'reflect-metadata';
 import { DataSource } from 'typeorm';
+import { AboutEntity } from '../../modules/about/entity/AboutEntity';
+import { MusicianEntity } from '../../modules/about/entity/MusicianEntity';
 
 export const AppDataSource = new DataSource({
   type: 'mongodb',

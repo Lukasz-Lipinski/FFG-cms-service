@@ -10,12 +10,14 @@ import { ConfigModule } from '@nestjs/config';
 @Module({
   imports: [
     AboutModule,
+    ConfigModule.forRoot({
+      envFilePath: '.env',
+    }),
     TypeOrmModule.forRoot({
       type: 'mongodb',
-      url: 'mongodb+srv://llipinski1993_db_user:Pusia12345@ffg-db.ffno4j3.mongodb.net/ffg-db',
+      url: `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@ffg-db.ffno4j3.mongodb.net/ffg-db`,
       entities: [MusicianEntity, AboutEntity],
     }),
-    ConfigModule.forRoot(),
   ],
   controllers: [AppController],
   providers: [AppService],

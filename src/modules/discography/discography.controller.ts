@@ -1,4 +1,5 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
+import { AddNewAlbumDto } from './dto/AddNewAlbumDto';
 
 @Controller('discography')
 export class DiscographyController {
@@ -7,6 +8,8 @@ export class DiscographyController {
     return 'Discography page content';
   }
 
-  @Post("add")
-  addAlbum(@Body() albumDto: AddAlbumDto): Promise<string> { }
+  @Post('add')
+  addAlbum(@Body() albumDto: AddNewAlbumDto): Promise<string> {
+    return new Promise(() => 'tests');
+  }
 }

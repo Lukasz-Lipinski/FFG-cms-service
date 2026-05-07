@@ -13,16 +13,16 @@ export class MusicianEntity {
   @ObjectIdColumn()
   _id: ObjectId | undefined;
 
-  @Column()
+  @Column('string')
   name: string;
 
-  @Column()
+  @Column('string')
   surname: string;
 
-  @Column()
+  @Column('enum', { enum: InstrumentEnum })
   instrument: InstrumentEnum;
 
-  @Column()
+  @Column('string')
   bio: string;
 
   @CreateDateColumn()
