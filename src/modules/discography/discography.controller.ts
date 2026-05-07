@@ -6,4 +6,7 @@ export class DiscographyController {
   getDiscography(): string {
     return 'Discography page content';
   }
+
+  @Post("add")
+  addAlbum(@Body() albumDto: AddAlbumDto): Promise<string> { }
 }
