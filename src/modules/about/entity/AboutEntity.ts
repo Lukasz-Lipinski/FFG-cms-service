@@ -12,7 +12,7 @@ export class AboutEntity {
   @ObjectIdColumn()
   _id?: ObjectId;
 
-  @Column()
+  @Column('string')
   content: string;
 
   @CreateDateColumn()

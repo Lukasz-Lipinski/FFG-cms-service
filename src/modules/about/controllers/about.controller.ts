@@ -3,6 +3,7 @@ import {
   Body,
   Controller,
   Get,
+  Inject,
   Param,
   Patch,
   Post,
@@ -17,7 +18,10 @@ import { AddBioDto } from '../dto/bio/AddBioDto';
 
 @Controller('about')
 export class AboutController {
-  constructor(private readonly aboutService: AboutService) {}
+  constructor(
+    @Inject(AboutService)
+    private readonly aboutService: AboutService,
+  ) {}
 
   @Get('bio')
   async getBandBio(): Promise<AboutEntity> {
