@@ -19,5 +19,6 @@
       ]
     }
   ],
+  "fluid": true,
   "outputDirectory": "dist"
 }
