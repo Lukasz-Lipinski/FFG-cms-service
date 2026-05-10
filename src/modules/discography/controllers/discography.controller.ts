@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
-import { AddNewAlbumDto } from './dto/AddNewAlbumDto';
+import { AddNewAlbumDto } from '../dto/AddNewAlbumDto';
 
 @Controller('discography')
 export class DiscographyController {
