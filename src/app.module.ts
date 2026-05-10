@@ -6,10 +6,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { MusicianEntity } from './modules/about/entity/MusicianEntity';
 import { AboutEntity } from './modules/about/entity/AboutEntity';
 import { ConfigModule } from '@nestjs/config';
+import { DiscographyModule } from './modules/discography/discography.module';
 
 @Module({
   imports: [
-    AboutModule,
     ConfigModule.forRoot({
       envFilePath: '.env',
     }),
@@ -18,7 +18,8 @@ import { ConfigModule } from '@nestjs/config';
       url: `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@ffg-db.ffno4j3.mongodb.net/ffg-db`,
       entities: [MusicianEntity, AboutEntity],
     }),
-    ConfigModule.forRoot(),
+    AboutModule,
+    DiscographyModule,
   ],
   controllers: [AppController],
   providers: [AppService],
