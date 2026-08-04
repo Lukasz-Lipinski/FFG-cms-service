@@ -7,6 +7,7 @@ import { MusicianEntity } from './modules/about/entity/MusicianEntity';
 import { AboutEntity } from './modules/about/entity/AboutEntity';
 import { ConfigModule } from '@nestjs/config';
 import { DiscographyModule } from './modules/discography/discography.module';
+import { AlbumEntity } from './modules/discography/entity/AlbumEntity';
 
 @Module({
   imports: [
@@ -15,8 +16,8 @@ import { DiscographyModule } from './modules/discography/discography.module';
     }),
     TypeOrmModule.forRoot({
       type: 'mongodb',
-      url: `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@ffg-db.ffno4j3.mongodb.net/ffg-db`,
-      entities: [MusicianEntity, AboutEntity],
+      url: `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cc-db.kbgicrx.mongodb.net/?appName=cc-db`,
+      entities: [MusicianEntity, AboutEntity, AlbumEntity],
     }),
     AboutModule,
     DiscographyModule,

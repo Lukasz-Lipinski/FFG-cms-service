@@ -1,8 +1,14 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  ObjectIdColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 @Entity()
 export class AlbumEntity {
-  @PrimaryGeneratedColumn()
+  @ObjectIdColumn()
   id: string;
 
   @Column()
@@ -19,4 +25,10 @@ export class AlbumEntity {
 
   @Column()
   trackList: string[];
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
 }
