@@ -1,33 +1,32 @@
-import { ObjectId } from 'mongodb';
 import {
   Column,
   CreateDateColumn,
   Entity,
-  ObjectIdColumn,
+  PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { InstrumentEnum } from '../shared/models';
 
 @Entity()
 export class MusicianEntity {
-  @ObjectIdColumn()
-  _id: ObjectId | undefined;
+  @PrimaryGeneratedColumn('uuid')
+  id!: string;
 
-  @Column('string')
-  name: string;
+  @Column()
+  name!: string;
 
-  @Column('string')
-  surname: string;
+  @Column()
+  surname!: string;
 
   @Column('enum', { enum: InstrumentEnum })
-  instrument: InstrumentEnum;
+  instrument!: InstrumentEnum;
 
-  @Column('string')
-  bio: string;
+  @Column('text')
+  bio!: string;
 
   @CreateDateColumn()
-  createdAt: Date;
+  createdAt!: Date;
 
   @UpdateDateColumn()
-  updatedAt: Date;
+  updatedAt!: Date;
 }

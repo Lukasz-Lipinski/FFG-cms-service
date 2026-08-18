@@ -1,23 +1,22 @@
-import { ObjectId } from 'mongodb';
 import {
   Column,
   CreateDateColumn,
   Entity,
-  ObjectIdColumn,
+  PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 
 @Entity()
 export class AboutEntity {
-  @ObjectIdColumn()
-  _id?: ObjectId;
+  @PrimaryGeneratedColumn('uuid')
+  id!: string;
 
-  @Column('string')
-  content: string;
+  @Column('text')
+  content!: string;
 
   @CreateDateColumn()
-  createdAt: Date;
+  createdAt!: Date;
 
   @UpdateDateColumn()
-  updatedAt: Date;
+  updatedAt!: Date;
 }

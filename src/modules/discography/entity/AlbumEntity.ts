@@ -2,33 +2,33 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  ObjectIdColumn,
+  PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 
 @Entity()
 export class AlbumEntity {
-  @ObjectIdColumn()
-  id: string;
+  @PrimaryGeneratedColumn('uuid')
+  id!: string;
 
   @Column()
-  title: string;
+  title!: string;
 
   @Column()
-  releaseDate: Date;
+  releaseDate!: Date;
 
   @Column()
-  coverImageUrl: string;
+  coverImageUrl!: string;
 
-  @Column()
-  description: string;
+  @Column('text')
+  description!: string;
 
-  @Column()
-  trackList: string[];
+  @Column('text', { array: true })
+  trackList!: string[];
 
   @CreateDateColumn()
-  createdAt: Date;
+  createdAt!: Date;
 
   @UpdateDateColumn()
-  updatedAt: Date;
+  updatedAt!: Date;
 }

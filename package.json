@@ -18,7 +18,12 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "vercel-build": "nest build"
+    "vercel-build": "nest build",
+    "typeorm": "typeorm-ts-node-commonjs -d src/core/database/db.ts",
+    "migration:generate": "npm run typeorm -- migration:generate",
+    "migration:run": "npm run typeorm -- migration:run",
+    "migration:revert": "npm run typeorm -- migration:revert",
+    "schema:drop": "npm run typeorm -- schema:drop"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",
@@ -27,7 +32,7 @@
     "@nestjs/platform-express": "^11.0.1",
     "@nestjs/typeorm": "^11.0.1",
     "class-validator": "^0.15.1",
-    "mongodb": "^6.21.0",
+    "pg": "^8.23.0",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1",
     "typeorm": "^0.3.28"

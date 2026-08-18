@@ -1,15 +1,12 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { MongoRepository } from 'typeorm';
+import { DataSource, Repository } from 'typeorm';
 import { AlbumEntity } from '../../entity/AlbumEntity';
 import { AddNewAlbumDto } from '../../dto/AddNewAlbumDto';
+import { AppDataSource } from 'src/core/database/db';
 
 @Injectable()
 export class DiscographyService {
-  constructor(
-    @InjectRepository(AlbumEntity)
-    private readonly discographyRepository: MongoRepository<AlbumEntity>,
-  ) {}
+  private discographyRepository: Repository<AlbumEntity> = AppDataSource.getRepository(AlbumEntity);
 
   async getAlbum(id?: string): Promise<AlbumEntity> {
     if (!id) {

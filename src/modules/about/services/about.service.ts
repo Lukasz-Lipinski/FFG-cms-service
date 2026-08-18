@@ -5,22 +5,16 @@ import {
 } from '@nestjs/common';
 import { AddMemberDto } from '../dto/members/AddMemberDto';
 import { MusicianEntity } from '../entity/MusicianEntity';
-import { InjectRepository } from '@nestjs/typeorm';
-import { MongoRepository } from 'typeorm';
 import { MemberDto } from '../dto/members/MemberDto';
-import { ObjectId } from 'mongodb';
 import { AboutEntity } from '../entity/AboutEntity';
 import { UpdateBioDto } from '../dto/bio/UpdateBioDto';
 import { MapToMemberDto } from '../shared/mappers';
+import { AppDataSource } from 'src/core/database/db';
 
 @Injectable()
 export class AboutService {
-  constructor(
-    @InjectRepository(MusicianEntity)
-    private readonly musicianRepository: MongoRepository<MusicianEntity>,
-    @InjectRepository(AboutEntity)
-    private readonly aboutRepository: MongoRepository<AboutEntity>,
-  ) {}
+  private readonly aboutRepository = AppDataSource.getRepository(AboutEntity);
+  private readonly musicianRepository = AppDataSource.getRepository(MusicianEntity);
 
   async getBioAsync(): Promise<AboutEntity> {
     const bio = await this.aboutRepository.find();
@@ -48,7 +42,7 @@ export class AboutService {
 
   async updateBioAsync(newBio: UpdateBioDto): Promise<AboutEntity> {
     const foundBio = await this.aboutRepository.findOne({
-      where: { _id: new ObjectId(newBio.id) },
+      where: { id: newBio.id },
     });
 
     if (!foundBio) {
@@ -76,7 +70,7 @@ export class AboutService {
 
   async getMemberInfo(id: string): Promise<MemberDto> {
     const foundMember = await this.musicianRepository.findOne({
-      where: { _id: new ObjectId(id) },
+      where: { id },
     });
 
     if (!foundMember) {

@@ -3,7 +3,7 @@ import { MusicianEntity } from '../entity/MusicianEntity';
 
 export function MapToMemberDto(musicianEntity: MusicianEntity): MemberDto {
   return {
-    id: musicianEntity._id?.toString() ?? '',
+    id: musicianEntity.id,
     name: musicianEntity.name,
     bio: musicianEntity.bio,
     instrument: musicianEntity.instrument,
